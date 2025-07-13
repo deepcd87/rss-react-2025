@@ -7,12 +7,19 @@ class SearchInput extends Component<SearchProps> {
     return (
       <div className="search-section">
         <input
+          className="search-section-input"
           type="text"
           value={this.props.searchValue}
           onChange={(e) => this.props.onSearchChange(e.target.value)}
           placeholder="Search Pokémon..."
         />
-        <button onClick={this.props.onSearchSubmit}>Search</button>
+        <button
+          className="search-section-btn"
+          onClick={this.props.onSearchSubmit}
+          disabled={this.props.isLoading}
+        >
+          {this.props.isLoading ? 'Searching...' : 'Search'}
+        </button>
       </div>
     );
   }

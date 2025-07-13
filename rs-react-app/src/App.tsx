@@ -12,6 +12,8 @@ class App extends Component<object, AppState> {
     this.state = {
       searchValue: savedSearch,
       pokemonList: [],
+      isLoading: false,
+      error: null,
     };
   }
 
@@ -30,6 +32,7 @@ class App extends Component<object, AppState> {
   };
 
   fetchApiData = async () => {
+    this.setState({ isLoading: true, error: null });
     const api = 'https://pokeapi.co/api/v2/pokemon';
 
     try {
@@ -51,10 +54,10 @@ class App extends Component<object, AppState> {
         };
 
         this.setState({ pokemonList: [pokemon] });
-        console.log(this.state.pokemonList);
       } else {
         const url = `${api}?limit=12`;
         const data = await fetchData(url);
+
         const pokemonWithDetails = await Promise.all(
           data.results.map(async (p: Pokemon) => {
             const detailsResponse = await fetch(p.url);
@@ -72,10 +75,15 @@ class App extends Component<object, AppState> {
         );
 
         this.setState({ pokemonList: pokemonWithDetails });
-        console.log(this.state.pokemonList);
       }
     } catch (error) {
-      console.log(error);
+      this.setState({
+        error:
+          error instanceof Error ? error.message : 'Failed to fetch Pokémon',
+        pokemonList: [],
+      });
+    } finally {
+      this.setState({ isLoading: false });
     }
   };
 
@@ -87,8 +95,13 @@ class App extends Component<object, AppState> {
           searchValue={this.state.searchValue}
           onSearchChange={this.handleSearchChange}
           onSearchSubmit={this.handleSearchSubmit}
+          isLoading={this.state.isLoading}
         />
-        <SearchResult />
+        <SearchResult
+          pokemonList={this.state.pokemonList}
+          isLoading={this.state.isLoading}
+          error={this.state.error}
+        />
       </div>
     );
   }

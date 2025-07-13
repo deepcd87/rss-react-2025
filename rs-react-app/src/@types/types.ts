@@ -1,12 +1,21 @@
 export type AppState = {
   searchValue: string;
   pokemonList: Pokemon[];
+  isLoading: boolean;
+  error: string | null;
 };
 
 export type SearchProps = {
   searchValue: string;
   onSearchChange: (term: string) => void;
   onSearchSubmit: () => void;
+  isLoading: boolean;
+};
+
+export type ResultsProps = {
+  pokemonList: Pokemon[];
+  isLoading: boolean;
+  error: string | null;
 };
 
 export type Pokemon = {

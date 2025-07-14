@@ -3,30 +3,7 @@ import type { ResultsProps } from '../../@types/types';
 import './SearchResult.css';
 
 class SearchResult extends Component<ResultsProps> {
-  state = { hasError: false };
-
-  triggerError = () => {
-    this.setState({ hasError: true });
-    throw new Error('This is a test error for ErrorBoundary');
-  };
-
-  handleReload = () => {
-    window.location.reload();
-  };
-
   render() {
-    if (this.state.hasError) {
-      return (
-        <div className="error-fallback">
-          <h2>Something went wrong.</h2>
-          <p>Please try reloading the page.</p>
-          <button className="reload-button" onClick={this.handleReload}>
-            Reload Page
-          </button>
-        </div>
-      );
-    }
-
     if (this.props.isLoading) {
       return (
         <div className="results-section loading">
@@ -47,7 +24,7 @@ class SearchResult extends Component<ResultsProps> {
     return (
       <>
         <div className="error-test-section">
-          <button className="error-test-btn " onClick={this.triggerError}>
+          <button className="error-test-btn " onClick={this.props.triggerError}>
             Test Error Boundary
           </button>
         </div>

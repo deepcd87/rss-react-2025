@@ -14,6 +14,7 @@ class App extends Component<object, AppState> {
       pokemonList: [],
       isLoading: false,
       error: null,
+      testError: false,
     };
   }
 
@@ -29,6 +30,15 @@ class App extends Component<object, AppState> {
     const trimmedSearchValue = this.state.searchValue.trim().toLowerCase();
     localStorage.setItem('searchValue', trimmedSearchValue);
     this.fetchApiData();
+  };
+
+  triggerError = () => {
+    this.setState({ testError: true });
+    throw new Error('This is a test error for ErrorBoundary');
+  };
+
+  handleReload = () => {
+    window.location.reload();
   };
 
   fetchApiData = async () => {
@@ -88,6 +98,17 @@ class App extends Component<object, AppState> {
   };
 
   render() {
+    if (this.state.testError) {
+      return (
+        <div className="error-fallback">
+          <h2>Something went wrong.</h2>
+          <p>Please try reloading the page.</p>
+          <button className="reload-button" onClick={this.handleReload}>
+            Reload Page
+          </button>
+        </div>
+      );
+    }
     return (
       <div className="app">
         <h1 className="title">Pokémon Search</h1>
@@ -101,6 +122,7 @@ class App extends Component<object, AppState> {
           pokemonList={this.state.pokemonList}
           isLoading={this.state.isLoading}
           error={this.state.error}
+          triggerError={this.triggerError}
         />
       </div>
     );

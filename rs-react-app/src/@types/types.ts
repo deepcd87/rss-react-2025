@@ -3,6 +3,7 @@ export type AppState = {
   pokemonList: Pokemon[];
   isLoading: boolean;
   error: string | null;
+  testError: boolean;
 };
 
 export type SearchProps = {
@@ -16,6 +17,7 @@ export type ResultsProps = {
   pokemonList: Pokemon[];
   isLoading: boolean;
   error: string | null;
+  triggerError: () => void;
 };
 
 export type Pokemon = {

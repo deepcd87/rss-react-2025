@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import type { ResultsProps } from '../../@types/types';
-import './SearchResult.css';
+import styles from './SearchResult.module.css';
 
 class SearchResult extends Component<ResultsProps> {
   render() {
     if (this.props.isLoading) {
       return (
-        <div className="results-section loading">
-          <div className="spinner"></div>
+        <div className={styles.resultsSectionLoading}>
+          <div className={styles.spinner}></div>
           <p>Loading Pokémon...</p>
         </div>
       );
@@ -15,7 +15,7 @@ class SearchResult extends Component<ResultsProps> {
 
     if (this.props.error) {
       return (
-        <div className="results-section error">
+        <div className={styles.resultsSectionError}>
           <p>{this.props.error}</p>
         </div>
       );
@@ -23,26 +23,29 @@ class SearchResult extends Component<ResultsProps> {
 
     return (
       <>
-        <div className="error-test-section">
-          <button className="error-test-btn " onClick={this.props.triggerError}>
+        <div className={styles.errorTestSection}>
+          <button
+            className={styles.errorTestBtn}
+            onClick={this.props.triggerError}
+          >
             Test Error Boundary
           </button>
         </div>
 
-        <div className="results-section">
+        <div className={styles.resultsSection}>
           {this.props.pokemonList.length === 0 ? (
             <p>No Pokémon found.</p>
           ) : (
-            <div className="pokemon-grid">
+            <div className={styles.pokemonGrid}>
               {this.props.pokemonList.map((pokemon) => (
-                <div key={pokemon.name} className="pokemon-card">
+                <div key={pokemon.name} className={styles.pokemonCard}>
                   <h3>{pokemon.name}</h3>
                   {pokemon.details && (
                     <>
                       <img
                         src={pokemon.details.sprites.front_default}
                         alt={pokemon.name}
-                        className="pokemon-avatar"
+                        className={styles.pokemonAvatar}
                       />
                       <p>ID: {pokemon.details.id}</p>
                       <p>

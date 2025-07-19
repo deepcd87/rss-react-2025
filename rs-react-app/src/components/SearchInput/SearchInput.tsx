@@ -1,20 +1,20 @@
 import { Component } from 'react';
 import type { SearchProps } from '../../@types/types';
-import './SearchInput.css';
+import styles from './SearchInput.module.css';
 
 class SearchInput extends Component<SearchProps> {
   render() {
     return (
-      <div className="search-section">
+      <div className={styles.searchSection}>
         <input
-          className="search-section-input"
+          className={styles.searchSectionInput}
           type="text"
           value={this.props.searchValue}
           onChange={(e) => this.props.onSearchChange(e.target.value)}
           placeholder="Search Pokémon..."
         />
         <button
-          className="search-section-btn"
+          className={styles.searchSectionBtn}
           onClick={this.props.onSearchSubmit}
           disabled={this.props.isLoading}
         >

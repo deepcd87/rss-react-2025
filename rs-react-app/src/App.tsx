@@ -1,9 +1,10 @@
 import { Component } from 'react';
 import SearchInput from './components/SearchInput/SearchInput';
 import SearchResult from './components/SearchResult/SearchResult';
-import { fetchData } from './utils/fetchData';
+import { fetchData } from './api/fetchData';
 import type { AppState, Pokemon } from './@types/types';
-import './App.css';
+import errorStyles from './error/ErrorBoundary.module.css';
+import styles from './App.module.css';
 
 class App extends Component<object, AppState> {
   constructor(props: object) {
@@ -100,18 +101,21 @@ class App extends Component<object, AppState> {
   render() {
     if (this.state.testError) {
       return (
-        <div className="error-fallback">
+        <div className={errorStyles.errorFallback}>
           <h2>Something went wrong.</h2>
           <p>Please try reloading the page.</p>
-          <button className="reload-button" onClick={this.handleReload}>
+          <button
+            className={errorStyles.reloadButton}
+            onClick={this.handleReload}
+          >
             Reload Page
           </button>
         </div>
       );
     }
     return (
-      <div className="app">
-        <h1 className="title">Pokémon Search</h1>
+      <div className={styles.app}>
+        <h1 className={styles.title}>Pokémon Search</h1>
         <SearchInput
           searchValue={this.state.searchValue}
           onSearchChange={this.handleSearchChange}

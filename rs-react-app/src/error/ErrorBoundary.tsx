@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import './ErrorBoundary.css';
+import styles from './ErrorBoundary.module.css';
 
 class ErrorBoundary extends Component<
   { children: React.ReactNode },
@@ -23,10 +23,10 @@ class ErrorBoundary extends Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="error-fallback">
+        <div className={styles.errorFallback}>
           <h2>Something went wrong.</h2>
           <p>Please try reloading the page.</p>
-          <button onClick={this.handleReload} className="reload-button">
+          <button onClick={this.handleReload} className={styles.reloadButton}>
             Reload Page
           </button>
         </div>

@@ -21,6 +21,8 @@ class SearchResult extends Component<ResultsProps> {
       );
     }
 
+    console.log(this.props.pokemonList);
+
     return (
       <>
         <div className={styles.errorTestSection}>

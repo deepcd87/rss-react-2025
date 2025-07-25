@@ -17,7 +17,6 @@ export type ResultsProps = {
   pokemonList: Pokemon[];
   isLoading: boolean;
   error: string | null;
-  triggerError: () => void;
 };
 
 export type Pokemon = {

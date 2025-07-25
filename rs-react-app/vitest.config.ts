@@ -23,10 +23,10 @@ export default mergeConfig(
           'src/@types/**/',
         ],
         thresholds: {
-          statements: 80,
-          branches: 80,
+          statements: 85.22,
+          branches: 83.33,
           functions: 100,
-          lines: 78.18,
+          lines: 85.22,
           perFile: true,
           autoUpdate: true,
         },

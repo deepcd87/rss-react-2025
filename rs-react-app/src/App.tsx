@@ -1,6 +1,7 @@
+import { Routes, Route } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import Header from './components/Header/Header';
-import SearchInput from './components/SearchInput/SearchInput';
+import AboutPage from './pages/About/AboutPage';
 import SearchResult from './components/SearchResult/SearchResult';
 import { fetchData } from './api/fetchData';
 import type { Pokemon } from './@types/types';
@@ -79,19 +80,25 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <Header />
-      <h1 className={styles.title}>Pokémon Search</h1>
-      <SearchInput
+      <Header
         searchValue={searchValue}
         onSearchChange={handleSearchChange}
         onSearchSubmit={handleSearchSubmit}
         isLoading={isLoading}
       />
-      <SearchResult
-        pokemonList={pokemonList}
-        isLoading={isLoading}
-        error={error}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <SearchResult
+              pokemonList={pokemonList}
+              isLoading={isLoading}
+              error={error}
+            />
+          }
+        />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
     </div>
   );
 };

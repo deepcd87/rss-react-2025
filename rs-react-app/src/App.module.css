@@ -1,13 +1,27 @@
-.app {
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* .app {
   max-width: 1000px;
   margin: 0 auto;
   min-height: 100vh;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+
   display: flex;
   flex-direction: column;
-}
+} */
 
-.title {
+/* .title {
   text-align: center;
-}
+} */

@@ -1,4 +1,4 @@
-.error-test-section {
+/* .error-test-section {
   text-align: center;
   margin-bottom: 30px;
 }
@@ -17,14 +17,15 @@
 
 .error-test-btn:hover {
   background: #ff2424;
-}
+} */
 
 .results-section {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  min-height: 300px;
 }
 
 .pokemon-grid {
@@ -59,6 +60,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 600px;
+  width: 100%;
 }
 
 .results-section-error {
@@ -83,4 +86,44 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  border: 1px solid #2a75bb;
+  border-radius: 4px;
+  background-color: #2a75bb;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: #1a5a9b;
+  border-color: #1a5a9b;
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #cccccc;
+  border-color: #cccccc;
+}
+
+.pageInfo {
+  font-size: 1rem;
+  color: #555;
+  min-width: 100px;
+  text-align: center;
 }

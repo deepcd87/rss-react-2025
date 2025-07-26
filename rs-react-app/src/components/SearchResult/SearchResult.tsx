@@ -1,7 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import type { ResultsProps } from '../../@types/types';
 import styles from './SearchResult.module.css';
 
-const SearchResult = ({ pokemonList, isLoading, error }: ResultsProps) => {
+const SearchResult = ({
+  pokemonList,
+  isLoading,
+  error,
+  currentPage,
+  totalPages,
+}: ResultsProps) => {
+  const navigate = useNavigate();
+
+  const handlePageChange = (newPage: number) => {
+    navigate(`/?page=${newPage}`);
+  };
+
   if (isLoading) {
     return (
       <div className={styles.resultsSectionLoading}>
@@ -51,6 +64,31 @@ const SearchResult = ({ pokemonList, isLoading, error }: ResultsProps) => {
                 )}
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Pagination*/}
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              className={styles.paginationButton}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+
+            <div className={styles.pageInfo}>
+              Page {currentPage} of {totalPages}
+            </div>
+
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              className={styles.paginationButton}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
           </div>
         )}
       </div>

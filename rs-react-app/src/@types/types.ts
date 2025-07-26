@@ -13,10 +13,17 @@ export type SearchProps = {
   isLoading: boolean;
 };
 
+export type PaginationProps = {
+  currentPage: number;
+  totalPages: number;
+};
+
 export type ResultsProps = {
   pokemonList: Pokemon[];
   isLoading: boolean;
   error: string | null;
+  currentPage: number;
+  totalPages: number;
 };
 
 export type Pokemon = {

@@ -127,3 +127,46 @@
   min-width: 100px;
   text-align: center;
 }
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.master {
+  flex: 1;
+  padding: 20px;
+  /* transition: all 0.3s ease; */
+}
+
+.master.hasDetail {
+  flex: 0 0 60%;
+  overflow-y: auto;
+}
+
+.detail {
+  flex: 0 0 40%;
+  padding: 20px;
+  background: #f8f8f8;
+  border-left: 1px solid #ddd;
+  position: relative;
+}
+
+.closeButton {
+  /* position: absolute; */
+  top: 80px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.pokemonCard {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pokemonCard:hover {
+  transform: scale(1.03);
+}

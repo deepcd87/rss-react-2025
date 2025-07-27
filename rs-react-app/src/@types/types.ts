@@ -13,17 +13,16 @@ export type SearchProps = {
   isLoading: boolean;
 };
 
-export type PaginationProps = {
-  currentPage: number;
-  totalPages: number;
-};
-
 export type ResultsProps = {
   pokemonList: Pokemon[];
   isLoading: boolean;
   error: string | null;
   currentPage: number;
   totalPages: number;
+  selectedId?: string | null;
+  onPokemonSelect: (id: string) => void;
+  onCloseDetails: () => void;
+  onPageChange: (page: number) => void;
 };
 
 export type Pokemon = {
@@ -45,6 +44,16 @@ export type PokemonDetails = {
   abilities: {
     ability: {
       name: string;
+    };
+  }[];
+  height: number;
+  weight: number;
+  stats: {
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+      url: string;
     };
   }[];
 };

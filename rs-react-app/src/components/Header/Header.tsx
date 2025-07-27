@@ -1,18 +1,28 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
-import type { SearchProps } from '../../@types/types';
+import { useState } from 'react';
 
 const Header = ({
-  searchValue,
-  onSearchChange,
   onSearchSubmit,
-  isLoading,
-}: SearchProps) => {
+}: {
+  onSearchSubmit: (term: string) => void;
+}) => {
+  const [searchValue, setSearchValue] = useState(
+    () => localStorage.getItem('searchValue') || ''
+  );
+
+  const handleSearchSubmit = () => {
+    const trimmedValue = searchValue.trim().toLowerCase();
+    localStorage.setItem('searchValue', trimmedValue);
+    onSearchSubmit(trimmedValue);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      onSearchSubmit();
+      handleSearchSubmit();
     }
   };
+
   return (
     <header className={styles.header}>
       <nav className={styles.navContainer}>
@@ -34,17 +44,16 @@ const Header = ({
           className={styles.searchSectionInput}
           type="text"
           value={searchValue}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={(e) => setSearchValue(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Search Pokémon..."
           autoFocus
         />
         <button
           className={styles.searchSectionBtn}
-          onClick={onSearchSubmit}
-          disabled={isLoading}
+          onClick={handleSearchSubmit}
         >
-          {isLoading ? 'Searching...' : 'Search'}
+          Search
         </button>
       </div>
     </header>

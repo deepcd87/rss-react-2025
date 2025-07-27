@@ -1,0 +1,27 @@
+.details {
+  padding: 20px;
+}
+
+.detailImage {
+  width: 120px;
+  height: 120px;
+  display: block;
+  margin: 0 auto;
+}
+
+.stats {
+  margin-top: 20px;
+}
+
+.stats p {
+  margin: 10px 0;
+}
+
+.statList {
+  margin-top: 15px;
+}
+
+.statList p {
+  margin: 5px 0;
+  text-transform: capitalize;
+}

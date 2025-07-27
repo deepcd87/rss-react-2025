@@ -1,19 +1,21 @@
-import { useNavigate } from 'react-router-dom';
 import type { ResultsProps } from '../../@types/types';
-import styles from './SearchResult.module.css';
+import styles from './PokemonList.module.css';
+import PokemonDetails from '../PokemonDetails/PokemonDetails';
 
-const SearchResult = ({
+const PokemonList = ({
   pokemonList,
   isLoading,
   error,
   currentPage,
   totalPages,
+  selectedId,
+  onPokemonSelect,
+  onCloseDetails,
+  onPageChange,
 }: ResultsProps) => {
-  const navigate = useNavigate();
-
-  const handlePageChange = (newPage: number) => {
-    navigate(`/?page=${newPage}`);
-  };
+  const selectedPokemon = pokemonList.find(
+    (p) => p.details?.id.toString() === selectedId
+  );
 
   if (isLoading) {
     return (
@@ -33,14 +35,23 @@ const SearchResult = ({
   }
 
   return (
-    <>
-      <div className={styles.resultsSection}>
+    <div className={styles.container}>
+      <div
+        className={`${styles.master} ${selectedPokemon ? styles.hasDetail : ''}`}
+      >
         {pokemonList.length === 0 ? (
-          <p>No Pokémon found.</p>
+          <p className={styles.noResults}>No Pokémon found.</p>
         ) : (
           <div className={styles.pokemonGrid}>
             {pokemonList.map((pokemon) => (
-              <div key={pokemon.name} className={styles.pokemonCard}>
+              <div
+                key={pokemon.name}
+                className={`${styles.pokemonCard} ${pokemon.details?.id.toString() === selectedId ? styles.selected : ''}`}
+                onClick={() =>
+                  pokemon.details &&
+                  onPokemonSelect(pokemon.details.id.toString())
+                }
+              >
                 <h3>{pokemon.name}</h3>
                 {pokemon.details && (
                   <>
@@ -54,12 +65,6 @@ const SearchResult = ({
                       Types:{' '}
                       {pokemon.details.types.map((t) => t.type.name).join(', ')}
                     </p>
-                    <p>
-                      Abilities:{' '}
-                      {pokemon.details.abilities
-                        .map((a) => a.ability.name)
-                        .join(', ')}
-                    </p>
                   </>
                 )}
               </div>
@@ -67,11 +72,10 @@ const SearchResult = ({
           </div>
         )}
 
-        {/* Pagination*/}
         {totalPages > 1 && (
           <div className={styles.pagination}>
             <button
-              onClick={() => handlePageChange(currentPage - 1)}
+              onClick={() => onPageChange(currentPage - 1)}
               className={styles.paginationButton}
               disabled={currentPage === 1}
             >
@@ -83,7 +87,7 @@ const SearchResult = ({
             </div>
 
             <button
-              onClick={() => handlePageChange(currentPage + 1)}
+              onClick={() => onPageChange(currentPage + 1)}
               className={styles.paginationButton}
               disabled={currentPage === totalPages}
             >
@@ -92,8 +96,21 @@ const SearchResult = ({
           </div>
         )}
       </div>
-    </>
+
+      {selectedPokemon && (
+        <div className={styles.detail}>
+          <button
+            onClick={onCloseDetails}
+            className={styles.closeButton}
+            aria-label="Close details"
+          >
+            ×
+          </button>
+          <PokemonDetails pokemon={selectedPokemon} />
+        </div>
+      )}
+    </div>
   );
 };
 
-export default SearchResult;
+export default PokemonList;

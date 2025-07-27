@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
 
-  height: 55px;
+  height: 60px;
   width: 100%;
-  background: rgb(233, 218, 7);
+  background: #ffcb05;
 }
 
 .nav-container {
@@ -35,7 +35,8 @@
 }
 
 .nav-link:hover {
-  background-color: #bebaba;
+  background-color: #3d7dca;
+  color: #ffffff;
   border-radius: 6px;
 }
 
@@ -57,7 +58,7 @@
 .search-section-btn {
   padding: 8px 16px;
   width: 130px;
-  background: rgb(75, 114, 151);
+  background: #3d7dca;
   color: rgba(255, 255, 255, 0.8);
   border: none;
   border-radius: 4px;
@@ -67,7 +68,7 @@
 }
 .search-section-btn:hover {
   color: #ffffff;
-  background: rgb(28, 49, 68);
+  background: #275894;
 }
 
 .search-section-btn:disabled {

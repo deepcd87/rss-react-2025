@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const Header = ({
   onSearchSubmit,
 }: {
   onSearchSubmit: (term: string) => void;
 }) => {
-  const [searchValue, setSearchValue] = useState(
-    () => localStorage.getItem('searchValue') || ''
-  );
+  const [searchValue, setSearchValue] = useLocalStorage('searchValue', '');
 
   const handleSearchSubmit = () => {
     const trimmedValue = searchValue.trim().toLowerCase();

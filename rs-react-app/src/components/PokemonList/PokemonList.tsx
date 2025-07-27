@@ -52,7 +52,7 @@ const PokemonList = ({
                   onPokemonSelect(pokemon.details.id.toString())
                 }
               >
-                <h3>{pokemon.name}</h3>
+                <h3>{pokemon.name.toUpperCase()}</h3>
                 {pokemon.details && (
                   <>
                     <img
@@ -60,11 +60,7 @@ const PokemonList = ({
                       alt={pokemon.name}
                       className={styles.pokemonAvatar}
                     />
-                    <p>ID: {pokemon.details.id}</p>
-                    <p>
-                      Types:{' '}
-                      {pokemon.details.types.map((t) => t.type.name).join(', ')}
-                    </p>
+                    <p>id: {pokemon.details.id}</p>
                   </>
                 )}
               </div>

@@ -4,7 +4,9 @@ import styles from './PokemonDetails.module.css';
 const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
   return (
     <div className={styles.details}>
-      <h2>{pokemon.name}</h2>
+      <div className={styles.title}>
+        <h2>{pokemon.name.toUpperCase()}</h2>
+      </div>
       <img
         src={pokemon.details?.sprites.front_default}
         alt={pokemon.name}

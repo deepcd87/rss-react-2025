@@ -4,7 +4,7 @@ import PokemonList from '../../components/PokemonList/PokemonList';
 import { fetchData } from '../../api/fetchData';
 import type { Pokemon } from '../../@types/types';
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 14;
 
 const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,7 +40,6 @@ const MainPage = () => {
         data.results.map(async (p: Pokemon) => {
           const detailsResponse = await fetch(p.url);
           const details = await detailsResponse.json();
-          console.log('Respo', details);
 
           return {
             ...p,
@@ -52,16 +51,11 @@ const MainPage = () => {
               height: details.height,
               weight: details.weight,
               species: details.species,
-              // stats: details.stats.map((stat: a) => ({
-              //   name: stat.stat.name,
-              //   value: stat.base_stat,
-              // })),
               stats: details.stats,
             },
           };
         })
       );
-      console.log('Poki', pokemonWithDetails);
       setPokemonList(pokemonWithDetails);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch Pokémon');
@@ -79,7 +73,6 @@ const MainPage = () => {
       const api = 'https://pokeapi.co/api/v2/pokemon';
       const url = `${api}/${term}`;
       const data = await fetchData(url);
-      console.log(await data);
       const pokemon: Pokemon = {
         name: data.name,
         url: `https://pokeapi.co/api/v2/pokemon/${data.id}`,
@@ -90,10 +83,6 @@ const MainPage = () => {
           abilities: data.abilities,
           height: data.height,
           weight: data.weight,
-          // stats: data.stats.map((stat: any) => ({
-          //   name: stat.stat.name,
-          //   value: stat.base_stat,
-          // })),
           stats: data.stats,
         },
       };

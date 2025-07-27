@@ -1,0 +1,22 @@
+import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import Header from './components/Header/Header';
+import styles from './App.module.css';
+
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchSubmit = (term: string) => {
+    setSearchTerm(term);
+  };
+  return (
+    <div className={styles.appContainer} data-testid="app-container">
+      <Header onSearchSubmit={handleSearchSubmit} />
+      <main role="main">
+        <Outlet context={{ searchTerm }} />
+      </main>
+    </div>
+  );
+};
+
+export default App;

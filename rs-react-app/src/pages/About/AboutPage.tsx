@@ -4,13 +4,13 @@ import rsschoolLogo from '../../assets/rsschoolLogo.webp';
 
 const AboutPage = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
+    <div className={styles.container} data-testid="about-page">
+      <div className={styles.content} data-testid="about-content">
         <h1 className={styles.title}>About Pokémon App</h1>
 
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>The Project</h2>
-          <p className={styles.text}>
+          <p className={styles.text} data-testid="about-me-text">
             This Pokémon application was created as a course project for the RS
             School React course. It demonstrates my skills in React, TypeScript,
             and modern web development.

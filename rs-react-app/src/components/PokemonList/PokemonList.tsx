@@ -28,7 +28,7 @@ const PokemonList = ({
 
   if (error) {
     return (
-      <div className={styles.resultsSectionError}>
+      <div className={styles.resultsSectionError} data-testid="error-container">
         <p>{error}</p>
       </div>
     );
@@ -51,6 +51,9 @@ const PokemonList = ({
                   pokemon.details &&
                   onPokemonSelect(pokemon.details.id.toString())
                 }
+                role="button"
+                aria-label={`${pokemon.name} pokemon card`}
+                data-testid={`pokemon-card-${pokemon.name}`}
               >
                 <h3>{pokemon.name.toUpperCase()}</h3>
                 {pokemon.details && (

@@ -10,9 +10,11 @@ const App = () => {
     setSearchTerm(term);
   };
   return (
-    <div className={styles.appContainer}>
+    <div className={styles.appContainer} data-testid="app-container">
       <Header onSearchSubmit={handleSearchSubmit} />
-      <Outlet context={{ searchTerm }} />
+      <main role="main">
+        <Outlet context={{ searchTerm }} />
+      </main>
     </div>
   );
 };

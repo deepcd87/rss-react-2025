@@ -3,7 +3,7 @@ import styles from './PokemonDetails.module.css';
 
 const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
   return (
-    <div className={styles.details}>
+    <div className={styles.details} data-testid="pokemon-details">
       <div className={styles.title}>
         <h2>{pokemon.name.toUpperCase()}</h2>
       </div>
@@ -30,7 +30,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
         <p>
           <strong>Weight:</strong> {pokemon.details?.weight}
         </p>
-        <div className={styles.statList}>
+        <div className={styles.statList} data-testid="pokemon-stats">
           <h3>Stats:</h3>
           {pokemon.details?.stats.map((stat) => (
             <p key={stat.stat.name}>

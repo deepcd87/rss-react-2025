@@ -19,7 +19,8 @@
   /* flex: 0 0 40%; */
   width: 320px;
   padding: 20px;
-  background: #f8f8f8;
+  background: #d3bdbd;
+  color: #000000;
   border: 1px solid #ddd;
   position: relative;
   border-radius: 6px;
@@ -51,7 +52,7 @@
 }
 
 .pokemonCard:hover {
-  background: #d8a29165;
+  background: #d3bdbd;
   border-radius: 6px;
   transform: scale(1.03);
 }

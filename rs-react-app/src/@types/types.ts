@@ -6,6 +6,13 @@ export type AppState = {
   testError: boolean;
 };
 
+export type Theme = 'light' | 'dark';
+
+export type ThemeContextType = {
+  theme: Theme;
+  toggleTheme: () => void;
+};
+
 export type SearchProps = {
   searchValue: string;
   onSearchChange: (term: string) => void;

@@ -75,3 +75,38 @@
   background: #cccccc;
   cursor: not-allowed;
 }
+
+/* Theme */
+.header.light {
+  background: #ffcb05;
+  color: #000;
+}
+
+.header.dark {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.header.dark .nav-link {
+  color: #fff;
+}
+
+.header.dark .nav-link:hover {
+  background-color: #3d7dca;
+  color: #ffffff;
+}
+
+.themeToggle {
+  margin-left: 10px;
+  padding: 8px 16px;
+  /* background: transparent; */
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 6px;
+  background: rgba(235, 235, 235, 0.514);
+}
+
+.themeToggle:hover {
+  background: #e6dc83;
+}

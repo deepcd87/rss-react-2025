@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { useTheme } from '../../hooks/useTheme';
 
 const Header = ({
   onSearchSubmit,
@@ -8,6 +9,7 @@ const Header = ({
   onSearchSubmit: (term: string) => void;
 }) => {
   const [searchValue, setSearchValue] = useLocalStorage('searchValue', '');
+  const { theme, toggleTheme } = useTheme();
 
   const handleSearchSubmit = () => {
     const trimmedValue = searchValue.trim().toLowerCase();
@@ -22,7 +24,7 @@ const Header = ({
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${styles[theme]}`}>
       <nav className={styles.navContainer}>
         <ul className={styles.navList}>
           <li>
@@ -53,6 +55,11 @@ const Header = ({
         >
           Search
         </button>
+        <div>
+          <button className={styles.themeToggle} onClick={toggleTheme}>
+            {theme === 'light' ? 'Dark Theme' : 'Light Theme'}
+          </button>
+        </div>
       </div>
     </header>
   );

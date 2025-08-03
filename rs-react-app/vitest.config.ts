@@ -26,10 +26,10 @@ export default mergeConfig(
           'src/router',
         ],
         thresholds: {
-          statements: 90.49,
+          statements: 90.6,
           branches: 89.36,
           functions: 80,
-          lines: 90.49,
+          lines: 90.6,
           perFile: false,
           autoUpdate: true,
         },

@@ -1,10 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { ThemeProvider } from '../../context/ThemeProvider';
 import AboutPage from './AboutPage';
 
 describe('AboutPage Component', () => {
   it('renders about information correctly', () => {
-    render(<AboutPage />);
+    render(
+      <ThemeProvider>
+        <AboutPage />
+      </ThemeProvider>
+    );
 
     expect(
       screen.getByRole('heading', { name: /About Pokémon App/i })

@@ -1,11 +1,19 @@
 import React from 'react';
+import { useTheme } from '../../hooks/useTheme';
 import styles from './AboutPage.module.css';
 import rsschoolLogo from '../../assets/rsschoolLogo.webp';
 
 const AboutPage = () => {
+  const { theme } = useTheme();
   return (
-    <div className={styles.container} data-testid="about-page">
-      <div className={styles.content} data-testid="about-content">
+    <div
+      className={`${styles.container} ${styles[theme]} `}
+      data-testid="about-page"
+    >
+      <div
+        className={`${styles.content} ${styles[theme]}`}
+        data-testid="about-content"
+      >
         <h1 className={styles.title}>About Pokémon App</h1>
 
         <div className={styles.section}>

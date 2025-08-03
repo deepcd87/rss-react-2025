@@ -35,7 +35,7 @@ export type ResultsProps = {
 export type Pokemon = {
   name: string;
   url: string;
-  details?: PokemonDetails;
+  details: PokemonDetails;
 };
 
 export type PokemonDetails = {
@@ -64,3 +64,9 @@ export type PokemonDetails = {
     };
   }[];
 };
+
+export interface SelectedPokemonStore {
+  selectedPokemon: Record<string, boolean>;
+  togglePokemon: (id: string) => void;
+  clearSelected: () => void;
+}

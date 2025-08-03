@@ -1,6 +1,7 @@
 import type { ResultsProps } from '../../@types/types';
 import styles from './PokemonList.module.css';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
+import { useSelectedPokemonStore } from '../../store/selectedPokemonStore';
 
 const PokemonList = ({
   pokemonList,
@@ -13,7 +14,9 @@ const PokemonList = ({
   onCloseDetails,
   onPageChange,
 }: ResultsProps) => {
-  const selectedPokemon = pokemonList.find(
+  const { selectedPokemon, togglePokemon } = useSelectedPokemonStore();
+
+  const selectedPokemonDetails = pokemonList.find(
     (p) => p.details?.id.toString() === selectedId
   );
 
@@ -37,7 +40,7 @@ const PokemonList = ({
   return (
     <div className={styles.container}>
       <div
-        className={`${styles.master} ${selectedPokemon ? styles.hasDetail : ''}`}
+        className={`${styles.master} ${selectedPokemonDetails ? styles.hasDetail : ''}`}
       >
         {pokemonList.length === 0 ? (
           <p className={styles.noResults}>No Pokémon found.</p>
@@ -55,6 +58,18 @@ const PokemonList = ({
                 aria-label={`${pokemon.name} pokemon card`}
                 data-testid={`pokemon-card-${pokemon.name}`}
               >
+                {pokemon.details && (
+                  <input
+                    type="checkbox"
+                    checked={!!selectedPokemon[pokemon.details.id.toString()]}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      togglePokemon(pokemon.details.id.toString());
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    className={styles.checkbox}
+                  />
+                )}
                 <h3>{pokemon.name.toUpperCase()}</h3>
                 {pokemon.details && (
                   <>
@@ -96,7 +111,7 @@ const PokemonList = ({
         )}
       </div>
 
-      {selectedPokemon && (
+      {selectedPokemonDetails && (
         <div className={styles.detail}>
           <button
             onClick={onCloseDetails}
@@ -105,7 +120,7 @@ const PokemonList = ({
           >
             ×
           </button>
-          <PokemonDetails pokemon={selectedPokemon} />
+          <PokemonDetails pokemon={selectedPokemonDetails} />
         </div>
       )}
     </div>

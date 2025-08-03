@@ -21,13 +21,18 @@ export const downloadPokemonCSV = (
     'Weight',
     'URL',
   ];
+
   const rows = selectedItems.map(({ data }) => [
     `"${data.name}"`,
-    data.details?.id,
-    `"${data.details?.types.map((t) => t.type.name).join(', ')}"`,
-    `"${data.details?.abilities.map((a) => a.ability.name).join(', ')}"`,
-    data.details?.height,
-    data.details?.weight,
+    data.details?.id ?? '',
+    data.details?.types
+      ? `"${data.details.types.map((t) => t.type.name).join(', ')}"`
+      : '',
+    data.details?.abilities
+      ? `"${data.details.abilities.map((a) => a.ability.name).join(', ')}"`
+      : '',
+    data.details?.height ?? '',
+    data.details?.weight ?? '',
     data.url,
   ]);
 

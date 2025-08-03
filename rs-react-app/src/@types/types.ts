@@ -66,7 +66,12 @@ export type PokemonDetails = {
 };
 
 export interface SelectedPokemonStore {
-  selectedPokemon: Record<string, boolean>;
-  togglePokemon: (id: string) => void;
+  selectedPokemon: Record<string, { selected: boolean; data: Pokemon }>;
+  togglePokemon: (pokemon: Pokemon) => void;
   clearSelected: () => void;
+}
+
+export interface SelectedPokemonItem {
+  selected: boolean;
+  data: Pokemon;
 }

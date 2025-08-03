@@ -4,7 +4,6 @@ import Header from './components/Header/Header';
 import { ThemeProvider } from './context/ThemeProvider';
 import { ThemeManager } from './components/ThemeManager/ThemeManager';
 import styles from './App.module.css';
-import { SelectedPokemonCount } from './components/SelectedPokemonCount/SelectedPokemonCount';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +19,6 @@ const App = () => {
         <main role="main">
           <Outlet context={{ searchTerm }} />
         </main>
-        <SelectedPokemonCount />
       </ThemeProvider>
     </div>
   );

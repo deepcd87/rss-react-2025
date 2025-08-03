@@ -3,12 +3,20 @@ import type { SelectedPokemonStore } from '../@types/types';
 
 export const useSelectedPokemonStore = create<SelectedPokemonStore>((set) => ({
   selectedPokemon: {},
-  togglePokemon: (id) =>
-    set((state) => ({
-      selectedPokemon: {
-        ...state.selectedPokemon,
-        [id]: !state.selectedPokemon[id],
-      },
-    })),
+  togglePokemon: (pokemon) =>
+    set((state) => {
+      const id = pokemon.details?.id.toString();
+      if (!id) return state;
+
+      return {
+        selectedPokemon: {
+          ...state.selectedPokemon,
+          [id]: {
+            selected: !state.selectedPokemon[id]?.selected,
+            data: pokemon,
+          },
+        },
+      };
+    }),
   clearSelected: () => set({ selectedPokemon: {} }),
 }));

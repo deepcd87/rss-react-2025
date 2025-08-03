@@ -2,6 +2,7 @@ import type { ResultsProps } from '../../@types/types';
 import styles from './PokemonList.module.css';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
 import { useSelectedPokemonStore } from '../../store/selectedPokemonStore';
+import { DownloadFlyout } from '../DownloadFlyout/DownloadFlyout';
 
 const PokemonList = ({
   pokemonList,
@@ -61,10 +62,13 @@ const PokemonList = ({
                 {pokemon.details && (
                   <input
                     type="checkbox"
-                    checked={!!selectedPokemon[pokemon.details.id.toString()]}
+                    checked={
+                      !!selectedPokemon[pokemon.details?.id.toString()]
+                        ?.selected
+                    }
                     onChange={(e) => {
                       e.stopPropagation();
-                      togglePokemon(pokemon.details.id.toString());
+                      togglePokemon(pokemon);
                     }}
                     onClick={(e) => e.stopPropagation()}
                     className={styles.checkbox}
@@ -123,6 +127,7 @@ const PokemonList = ({
           <PokemonDetails pokemon={selectedPokemonDetails} />
         </div>
       )}
+      <DownloadFlyout />
     </div>
   );
 };

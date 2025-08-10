@@ -30,6 +30,8 @@ export type ResultsProps = {
   onPokemonSelect: (id: string) => void;
   onCloseDetails: () => void;
   onPageChange: (page: number) => void;
+  onRefresh: () => void;
+  isRefreshing: boolean;
 };
 
 export type Pokemon = {
@@ -64,6 +66,34 @@ export type PokemonDetails = {
     };
   }[];
 };
+
+export interface RawPokemonData {
+  name: string;
+  id: number;
+  sprites: {
+    front_default: string;
+  };
+  types: {
+    type: {
+      name: string;
+    };
+  }[];
+  abilities: {
+    ability: {
+      name: string;
+    };
+  }[];
+  height: number;
+  weight: number;
+  stats: {
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }[];
+}
 
 export interface SelectedPokemonStore {
   selectedPokemon: Record<string, { selected: boolean; data: Pokemon }>;

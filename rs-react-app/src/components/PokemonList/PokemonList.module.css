@@ -16,7 +16,6 @@
 }
 
 .detail {
-  /* flex: 0 0 40%; */
   width: 320px;
   padding: 20px;
   background: #d3bdbd;
@@ -26,7 +25,7 @@
   border-radius: 6px;
 }
 
-.closeButton {
+.close-button {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -42,7 +41,7 @@
   gap: 20px;
 }
 
-.pokemonCard {
+.pokemon-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -51,7 +50,7 @@
   transition: transform 0.2s;
 }
 
-.pokemonCard:hover {
+.pokemon-card:hover {
   background: #d3bdbd;
   border-radius: 6px;
   transform: scale(1.03);
@@ -100,7 +99,7 @@
   margin: 20px 0;
 }
 
-.paginationButton {
+.pagination-button {
   padding: 8px 16px;
   border: 1px solid #2a75bb;
   border-radius: 4px;
@@ -111,12 +110,12 @@
   transition: all 0.2s;
 }
 
-.paginationButton:hover:not(:disabled) {
+.pagination-button:hover:not(:disabled) {
   background-color: #1a5a9b;
   border-color: #1a5a9b;
 }
 
-.paginationButton:disabled {
+.pagination-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #cccccc;
@@ -138,4 +137,30 @@
   height: 20px;
   cursor: pointer;
   z-index: 1;
+}
+
+.controls-section {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.refresh-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.refresh-button:hover {
+  background-color: #45a049;
+}
+
+.refresh-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

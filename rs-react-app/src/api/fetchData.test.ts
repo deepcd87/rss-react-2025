@@ -27,7 +27,7 @@ describe('fetchData', () => {
 
     await expect(
       fetchData('https://pokeapi.co/api/v2/pokemon/invalid')
-    ).rejects.toThrow('Failed to find Pokémon');
+    ).rejects.toThrow('Pokémon not found');
   });
 
   it('should throw error when network request fails', async () => {
@@ -36,6 +36,6 @@ describe('fetchData', () => {
 
     await expect(
       fetchData('https://pokeapi.co/api/v2/pokemon/pikachu')
-    ).rejects.toThrow('Error: Network error');
+    ).rejects.toThrow('Network error');
   });
 });

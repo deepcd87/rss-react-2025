@@ -1,13 +1,15 @@
-// src/utils/downloadPokemonCSV.test.ts
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { downloadPokemonCSV } from './downloadPokemonCSV';
-import type { SelectedPokemonItem, Pokemon } from '../@types/types';
+import { downloadPokemonCSV } from '../downloadPokemonCSV';
+import type { SelectedPokemonItem, Pokemon } from '../../@types/types';
 
-// Mock Blob globally
-global.Blob = vi.fn((content: never, options: never) => ({ content, options }));
+global.Blob = vi.fn(function (
+  blobParts?: BlobPart[],
+  options?: BlobPropertyBag
+) {
+  return { blobParts, options };
+}) as unknown as typeof Blob;
 
 describe('downloadPokemonCSV', () => {
-  // Mock data
   const mockPokemon1: Pokemon = {
     name: 'Pikachu',
     url: 'https://pokeapi.co/api/v2/pokemon/25/',

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+'use client';
+import Link from 'next/link';
 import styles from './Header.module.css';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { useTheme } from '../../hooks/useTheme';
@@ -28,12 +29,12 @@ const Header = ({
       <nav className={styles.navContainer}>
         <ul className={styles.navList}>
           <li>
-            <Link to="/" className={styles.navLink}>
+            <Link href="/" className={styles.navLink}>
               Home
             </Link>
           </li>
           <li>
-            <Link to="/about" className={styles.navLink}>
+            <Link href="/about" className={styles.navLink}>
               About
             </Link>
           </li>

@@ -1,18 +1,37 @@
-import { useOutletContext, useSearchParams } from 'react-router-dom';
+'use client';
+import { useSearchParams, useRouter } from 'next/navigation';
+import PokemonList from '../components/PokemonList/PokemonList';
 import { useMemo } from 'react';
-import PokemonList from '../../components/PokemonList/PokemonList';
-import { formatPokemon } from '../../utils/formatPokemon';
-import { ITEMS_PER_PAGE } from '../../@types/constants';
-import {
-  usePokemonSearch,
-  usePokemonListWithDetails,
-} from '../../hooks/queries';
+import { formatPokemon } from '../utils/formatPokemon';
+import { ITEMS_PER_PAGE } from '../@types/constants';
+import { usePokemonSearch, usePokemonListWithDetails } from '../hooks/queries';
 
-const MainPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
-  const detailsId = searchParams.get('details');
-  const { searchTerm } = useOutletContext<{ searchTerm: string }>();
+export default function HomePage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const pageParam = searchParams?.get('page');
+  const detailsParam = searchParams?.get('details');
+  const searchParam = searchParams?.get('search');
+
+  const currentPage = pageParam ? Number(pageParam) : 1;
+  const detailsId = detailsParam || null;
+  const searchTerm = searchParam || '';
+
+  const updateURL = (newPage: number, newDetailsId?: string) => {
+    const params = new URLSearchParams(searchParams?.toString());
+
+    if (newPage > 1) params.set('page', newPage.toString());
+    else params.delete('page');
+
+    if (newDetailsId) params.set('details', newDetailsId);
+    else params.delete('details');
+
+    if (searchTerm) params.set('search', searchTerm);
+    else params.delete('search');
+
+    router.push(`/?${params.toString()}`);
+  };
 
   // Queries
   const listQuery = usePokemonListWithDetails(
@@ -45,15 +64,6 @@ const MainPage = () => {
   }, [searchTerm, searchQuery.data, listQuery.data]);
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
-
-  // Update URL parameters
-  const updateURL = (newPage: number, newDetailsId?: string) => {
-    const params = new URLSearchParams();
-    if (newPage > 1) params.set('page', newPage.toString());
-    if (newDetailsId) params.set('details', newDetailsId);
-    if (searchTerm) params.set('search', searchTerm);
-    setSearchParams(params);
-  };
 
   // Handlers
   const handlePageChange = (newPage: number) => {
@@ -91,6 +101,4 @@ const MainPage = () => {
       isRefreshing={searchQuery.isRefetching || listQuery.isRefetching}
     />
   );
-};
-
-export default MainPage;
+}

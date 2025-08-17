@@ -1,7 +1,8 @@
+'use client';
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
-import styles from './AboutPage.module.css';
-import rsschoolLogo from '../../assets/rsschoolLogo.webp';
+import styles from './about.module.css';
+import Image from 'next/image';
 
 const AboutPage = () => {
   const { theme } = useTheme();
@@ -52,9 +53,11 @@ const AboutPage = () => {
               rel="noopener noreferrer"
               className={styles.rsSchoolLink}
             >
-              <img
-                src={rsschoolLogo}
+              <Image
+                src="/assets/rsschoolLogo.webp"
                 alt="RS School Logo"
+                width={100}
+                height={40}
                 className={styles.rsLogo}
               />
               <span>Visit RS School React Course</span>

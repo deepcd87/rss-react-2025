@@ -7,7 +7,7 @@
   background: #ffcb05;
 }
 
-.nav-container {
+.navContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +15,7 @@
   padding: 0 20px 0 5px;
 }
 
-.nav-list {
+.navList {
   display: flex;
   flex-direction: row;
   list-style: none;
@@ -25,7 +25,7 @@
   align-items: center;
 }
 
-.nav-link {
+.navLink {
   color: rgb(1, 10, 39);
   text-decoration: none;
   font-size: 1.2rem;
@@ -34,7 +34,7 @@
   transition: background-color 0.3s;
 }
 
-.nav-link:hover {
+.navLink:hover {
   background-color: #3d7dca;
   color: #ffffff;
   border-radius: 6px;
@@ -42,11 +42,11 @@
 
 /* SEARCH INPUT */
 
-.search-section {
+.searchSection {
   display: flex;
   margin: 0 auto;
 }
-.search-section-input {
+.searchSectionInput {
   margin-right: 10px;
   max-width: 600px;
   padding: 8px;
@@ -55,7 +55,7 @@
   border-radius: 4px;
 }
 
-.search-section-btn {
+.searchSectionBtn {
   padding: 8px 16px;
   width: 130px;
   background: #3d7dca;
@@ -66,12 +66,12 @@
   font-weight: bold;
   cursor: pointer;
 }
-.search-section-btn:hover {
+.searchSectionBtn:hover {
   color: #ffffff;
   background: #275894;
 }
 
-.search-section-btn:disabled {
+.searchSectionBtn:disabled {
   background: #cccccc;
   cursor: not-allowed;
 }
@@ -99,7 +99,6 @@
 .themeToggle {
   margin-left: 10px;
   padding: 8px 16px;
-  /* background: transparent; */
   border: none;
   font-size: 1.2rem;
   cursor: pointer;

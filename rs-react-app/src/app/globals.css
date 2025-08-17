@@ -12,16 +12,6 @@ body {
   min-height: 100vh;
 }
 
-body.light {
-  background-color: #ffffff;
-  color: #000;
-}
-
-body.dark {
-  background-color: #1a1a1a;
-  color: #fff;
-}
-
 body[data-theme='light'] {
   background-color: #ffffff;
   color: #000;

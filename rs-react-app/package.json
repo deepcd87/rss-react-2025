@@ -27,6 +27,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.84.1",
     "next": "^15.4.6",
+    "next-intl": "^4.3.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "zustand": "^5.0.7"

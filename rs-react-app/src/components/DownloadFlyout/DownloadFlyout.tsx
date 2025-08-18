@@ -1,9 +1,11 @@
 import { useSelectedPokemonStore } from '@/store/selectedPokemonStore';
 import { downloadPokemonCSV } from '@/utils/downloadPokemonCSV';
 import styles from './DownloadFlyout.module.css';
+import { useTranslations } from 'next-intl';
 
 export const DownloadFlyout = () => {
   const { selectedPokemon, clearSelected } = useSelectedPokemonStore();
+  const t = useTranslations('pokemonList.downloadFlyout');
 
   const selectedItems = Object.values(selectedPokemon).filter(
     (item) => item.selected
@@ -19,14 +21,12 @@ export const DownloadFlyout = () => {
   return (
     <div className={styles.flyout}>
       <div className={styles.flyoutContent}>
-        <span>
-          {selectedCount} {selectedCount === 1 ? 'item' : 'items'} selected
-        </span>
+        <span>{t('selected', { count: selectedCount })}</span>
         <button onClick={clearSelected} className={styles.flyoutButton}>
-          Unselect all
+          {t('unselect')}
         </button>
         <button onClick={handleDownload} className={styles.flyoutButton}>
-          Download
+          {t('download')}
         </button>
       </div>
     </div>

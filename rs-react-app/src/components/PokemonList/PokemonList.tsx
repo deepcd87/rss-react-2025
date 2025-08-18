@@ -4,6 +4,7 @@ import PokemonDetails from '../PokemonDetails/PokemonDetails';
 import { useSelectedPokemonStore } from '@/store/selectedPokemonStore';
 import { DownloadFlyout } from '../DownloadFlyout/DownloadFlyout';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const PokemonList = ({
   pokemonList,
@@ -19,6 +20,7 @@ const PokemonList = ({
   isRefreshing,
 }: ResultsProps) => {
   const { selectedPokemon, togglePokemon } = useSelectedPokemonStore();
+  const t = useTranslations('pokemonList');
 
   const selectedPokemonDetails = pokemonList.find(
     (p) => p.details?.id.toString() === selectedId
@@ -28,7 +30,7 @@ const PokemonList = ({
     return (
       <div className={styles.resultsSectionLoading}>
         <div className={styles.spinner}></div>
-        <p>Loading Pokémon...</p>
+        <p>{t('loading')}</p>
       </div>
     );
   }
@@ -50,7 +52,7 @@ const PokemonList = ({
           disabled={isRefreshing}
           className={styles.refreshButton}
         >
-          {isRefreshing ? 'Refreshing...' : 'Refresh Data'}
+          {isRefreshing ? t('refreshing') : t('refresh')}
         </button>
       </div>
       <div className={styles.container}>
@@ -114,7 +116,7 @@ const PokemonList = ({
                 className={styles.paginationButton}
                 disabled={currentPage === 1}
               >
-                Previous
+                {t('previous')}
               </button>
 
               <div className={styles.pageInfo}>
@@ -126,7 +128,7 @@ const PokemonList = ({
                 className={styles.paginationButton}
                 disabled={currentPage === totalPages}
               >
-                Next
+                {t('next')}
               </button>
             </div>
           )}

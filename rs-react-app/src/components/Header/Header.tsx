@@ -3,6 +3,8 @@ import Link from 'next/link';
 import styles from './Header.module.css';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import { useTheme } from '@/hooks/useTheme';
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 const Header = ({
   onSearchSubmit,
@@ -11,6 +13,7 @@ const Header = ({
 }) => {
   const [searchValue, setSearchValue] = useLocalStorage('searchValue', '');
   const { theme, toggleTheme } = useTheme();
+  const t = useTranslations('header');
 
   const handleSearchSubmit = () => {
     const trimmedValue = searchValue.trim().toLowerCase();
@@ -30,12 +33,12 @@ const Header = ({
         <ul className={styles.navList}>
           <li>
             <Link href="/" className={styles.navLink}>
-              Home
+              {t('home')}
             </Link>
           </li>
           <li>
             <Link href="/about" className={styles.navLink}>
-              About
+              {t('about')}
             </Link>
           </li>
         </ul>
@@ -47,20 +50,21 @@ const Header = ({
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Search Pokémon..."
+          placeholder={t('searchPlaceholder')}
           autoFocus
         />
         <button
           className={styles.searchSectionBtn}
           onClick={handleSearchSubmit}
         >
-          Search
+          {t('searchButton')}
         </button>
         <div>
           <button className={styles.themeToggle} onClick={toggleTheme}>
-            {theme === 'light' ? 'Dark Theme' : 'Light Theme'}
+            {theme === 'light' ? t('themeToggle.dark') : t('themeToggle.light')}
           </button>
         </div>
+        <LanguageSwitcher />
       </div>
     </header>
   );

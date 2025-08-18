@@ -1,9 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './NotFoundPage.module.css';
+'use client';
+import { useRouter } from 'next/navigation';
+import styles from '../styles/not-found.module.css';
 
 const NotFoundPage = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className={styles.container}>
@@ -17,7 +17,7 @@ const NotFoundPage = () => {
           <div className={styles.pokeballCenter}></div>
           <div className={styles.pokeballBottom}></div>
         </div>
-        <button className={styles.homeButton} onClick={() => navigate('/')}>
+        <button className={styles.homeButton} onClick={() => router.push('/')}>
           Go to Pokémon Home
         </button>
       </div>

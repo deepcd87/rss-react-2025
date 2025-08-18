@@ -1,4 +1,4 @@
-import './globals.css';
+import '../styles/globals.css';
 import { QueryClientProviderWrapper } from '../components/QueryClientProvider/QueryClientProvider';
 import { ThemeProvider } from '../context/ThemeProvider';
 import { ThemeManager } from '../components/ThemeManager/ThemeManager';

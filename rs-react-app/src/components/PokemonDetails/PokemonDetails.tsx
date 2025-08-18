@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Pokemon } from '../../@types/types';
 import styles from './PokemonDetails.module.css';
 
@@ -7,10 +8,13 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
       <div className={styles.title}>
         <h2>{pokemon.name.toUpperCase()}</h2>
       </div>
-      <img
+      <Image
         src={pokemon.details?.sprites.front_default}
         alt={pokemon.name}
+        width={200}
+        height={200}
         className={styles.detailImage}
+        priority
       />
       <div className={styles.stats}>
         <p>

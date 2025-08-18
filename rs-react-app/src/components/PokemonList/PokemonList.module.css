@@ -56,6 +56,12 @@
   transform: scale(1.03);
 }
 
+.pokemonAvatar {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
 .resultsSectionLoading {
   display: flex;
   flex-direction: column;

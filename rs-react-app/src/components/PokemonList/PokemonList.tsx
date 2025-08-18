@@ -3,6 +3,7 @@ import styles from './PokemonList.module.css';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
 import { useSelectedPokemonStore } from '../../store/selectedPokemonStore';
 import { DownloadFlyout } from '../DownloadFlyout/DownloadFlyout';
+import Image from 'next/image';
 
 const PokemonList = ({
   pokemonList,
@@ -90,10 +91,13 @@ const PokemonList = ({
                   <h3>{pokemon.name.toUpperCase()}</h3>
                   {pokemon.details && (
                     <>
-                      <img
+                      <Image
                         src={pokemon.details.sprites.front_default}
                         alt={pokemon.name}
+                        width={96}
+                        height={96}
                         className={styles.pokemonAvatar}
+                        priority={pokemon.details?.id.toString() === selectedId}
                       />
                       <p>id: {pokemon.details.id}</p>
                     </>

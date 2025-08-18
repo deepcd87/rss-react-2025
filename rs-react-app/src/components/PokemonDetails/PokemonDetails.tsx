@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import type { Pokemon } from '../../@types/types';
+import type { Pokemon } from '@/@types/types';
 import styles from './PokemonDetails.module.css';
 
 const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {

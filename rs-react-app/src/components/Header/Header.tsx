@@ -1,8 +1,8 @@
 'use client';
 import Link from 'next/link';
 import styles from './Header.module.css';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import { useTheme } from '../../hooks/useTheme';
+import useLocalStorage from '@/hooks/useLocalStorage';
+import { useTheme } from '@/hooks/useTheme';
 
 const Header = ({
   onSearchSubmit,

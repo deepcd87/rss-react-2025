@@ -1,6 +1,6 @@
-import type { SelectedPokemonItem } from '../@types/types';
+import type { SelectedPokemonItem } from '@/@types/types';
 
-export const downloadPokemonCSV = (
+export const downloadPokemonCSV = async (
   selectedPokemon: Record<string, SelectedPokemonItem>
 ) => {
   const selectedItems = Object.values(selectedPokemon).filter(
@@ -12,42 +12,32 @@ export const downloadPokemonCSV = (
     return;
   }
 
-  const headers = [
-    'Name',
-    'ID',
-    'Types',
-    'Abilities',
-    'Height',
-    'Weight',
-    'URL',
-  ];
+  try {
+    const response = await fetch('/api/download', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selectedPokemon),
+    });
 
-  const rows = selectedItems.map(({ data }) => [
-    `"${data.name}"`,
-    data.details?.id ?? '',
-    data.details?.types
-      ? `"${data.details.types.map((t) => t.type.name).join(', ')}"`
-      : '',
-    data.details?.abilities
-      ? `"${data.details.abilities.map((a) => a.ability.name).join(', ')}"`
-      : '',
-    data.details?.height ?? '',
-    data.details?.weight ?? '',
-    data.url,
-  ]);
+    if (!response.ok) {
+      throw new Error('Failed to generate CSV');
+    }
 
-  const csvContent = [
-    headers.join(','),
-    ...rows.map((row) => row.join(',')),
-  ].join('\n');
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
 
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${selectedItems.length}_pokemon.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${selectedItems.length}_pokemon.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Download failed:', error);
+    alert('Failed to download CSV. Please try again.');
+  }
 };

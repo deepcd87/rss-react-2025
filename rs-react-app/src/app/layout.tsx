@@ -1,8 +1,8 @@
-import '../styles/globals.css';
-import { QueryClientProviderWrapper } from '../components/QueryClientProvider/QueryClientProvider';
-import { ThemeProvider } from '../context/ThemeProvider';
-import { ThemeManager } from '../components/ThemeManager/ThemeManager';
-import HeaderWrapper from '../components/Header/HeaderWrapper';
+import '@/styles/globals.css';
+import { QueryClientProviderWrapper } from '@/components/QueryClientProvider/QueryClientProvider';
+import { ThemeProvider } from '@/context/ThemeProvider';
+import { ThemeManager } from '@/components/ThemeManager/ThemeManager';
+import HeaderWrapper from '@/components/Header/HeaderWrapper';
 
 export default function RootLayout({
   children,

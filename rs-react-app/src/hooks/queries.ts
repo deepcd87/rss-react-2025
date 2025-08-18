@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchData } from '../api/fetchData';
-import type { Pokemon } from '../@types/types';
-import { ITEMS_PER_PAGE } from '../@types/constants';
+import { fetchData } from '@/api/fetchData';
+import type { Pokemon } from '@/@types/types';
+import { ITEMS_PER_PAGE } from '@/@types/constants';
 
 export const usePokemonList = (page: number) => {
   return useQuery({

@@ -1,10 +1,10 @@
 'use client';
 import { useSearchParams, useRouter } from 'next/navigation';
-import PokemonList from '../components/PokemonList/PokemonList';
+import PokemonList from '@/components/PokemonList/PokemonList';
 import { useMemo } from 'react';
-import { formatPokemon } from '../utils/formatPokemon';
-import { ITEMS_PER_PAGE } from '../@types/constants';
-import { usePokemonSearch, usePokemonListWithDetails } from '../hooks/queries';
+import { formatPokemon } from '@/utils/formatPokemon';
+import { ITEMS_PER_PAGE } from '@/@types/constants';
+import { usePokemonSearch, usePokemonListWithDetails } from '@/hooks/queries';
 
 export default function HomePage() {
   const searchParams = useSearchParams();

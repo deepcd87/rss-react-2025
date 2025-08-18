@@ -1,4 +1,4 @@
-import type { Pokemon, RawPokemonData } from '../@types/types';
+import type { Pokemon, RawPokemonData } from '@/@types/types';
 
 export const formatPokemon = (data: RawPokemonData): Pokemon => ({
   name: data.name,

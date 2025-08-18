@@ -1,5 +1,5 @@
-import { useSelectedPokemonStore } from '../../store/selectedPokemonStore';
-import { downloadPokemonCSV } from '../../utils/downloadPokemonCSV';
+import { useSelectedPokemonStore } from '@/store/selectedPokemonStore';
+import { downloadPokemonCSV } from '@/utils/downloadPokemonCSV';
 import styles from './DownloadFlyout.module.css';
 
 export const DownloadFlyout = () => {

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 
 export const ThemeManager = () => {
   const { theme } = useTheme();

@@ -1,7 +1,7 @@
-import type { ResultsProps } from '../../@types/types';
+import type { ResultsProps } from '@/@types/types';
 import styles from './PokemonList.module.css';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
-import { useSelectedPokemonStore } from '../../store/selectedPokemonStore';
+import { useSelectedPokemonStore } from '@/store/selectedPokemonStore';
 import { DownloadFlyout } from '../DownloadFlyout/DownloadFlyout';
 import Image from 'next/image';
 

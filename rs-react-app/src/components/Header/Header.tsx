@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import styles from './Header.module.css';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import { useTheme } from '@/hooks/useTheme';

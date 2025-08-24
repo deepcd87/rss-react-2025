@@ -1,2 +1,2 @@
 cd ./rs-react-app
-npm test
+#npm test

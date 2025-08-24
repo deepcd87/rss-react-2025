@@ -1,27 +1,37 @@
-import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
-import Header from './components/Header/Header';
-import { ThemeManager } from './components/ThemeManager/ThemeManager';
-import { ThemeProvider } from './context/ThemeProvider';
-import styles from './App.module.css';
+import { useState, useEffect } from 'react';
+import MainPage from './components/MainPage';
+import UncontrolledFormModal from './components/UncontrolledFormModal';
+import HookFormModal from './components/HookFormModal';
+import { useStore } from './store/store';
+import './App.css';
 
-const App = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+function App() {
+  const [showUncontrolledModal, setShowUncontrolledModal] = useState(false);
+  const [showHookFormModal, setShowHookFormModal] = useState(false);
+  const { fetchCountries } = useStore();
 
-  const handleSearchSubmit = (term: string) => {
-    setSearchTerm(term);
-  };
+  useEffect(() => {
+    fetchCountries();
+  }, [fetchCountries]);
+
   return (
-    <div className={styles.appContainer} data-testid="app-container">
-      <ThemeProvider>
-        <ThemeManager />
-        <Header onSearchSubmit={handleSearchSubmit} />
-        <main role="main">
-          <Outlet context={{ searchTerm }} />
-        </main>
-      </ThemeProvider>
+    <div className="app">
+      <MainPage
+        onOpenUncontrolled={() => setShowUncontrolledModal(true)}
+        onOpenHookForm={() => setShowHookFormModal(true)}
+      />
+
+      {showUncontrolledModal && (
+        <UncontrolledFormModal
+          onClose={() => setShowUncontrolledModal(false)}
+        />
+      )}
+
+      {showHookFormModal && (
+        <HookFormModal onClose={() => setShowHookFormModal(false)} />
+      )}
     </div>
   );
-};
+}
 
 export default App;
